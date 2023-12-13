@@ -1,31 +1,31 @@
 async function getData() {
-    const response = await fetch("test.csv");
+    const response = await fetch("covid.csv");
     const data = await response.text();
     const rows = data.split("\n").slice(1);
-    const years = [];
-    const temperatures = [];
+    const dates = [];
+    const caseNums = [];
     rows.forEach((x) => {
         const row = x.split(",");
-        const year = row[0];
-        const temperature = row[1];
-        years.push(year);
+        const date = row[0];
+        const caseNum = row[1];
+        dates.push(date);
         //offset is delt with, has to convert to number as well
-        temperatures.push(Number(temperature)+14);
+        caseNums.push(caseNum);
     });
-    createLineGraph(years, temperatures);
+    createLineGraph(dates, caseNums);
 }
 
 
-async function createLineGraph(years, temperatures) {
+async function createLineGraph(dates, caseNums) {
     const chrt = document.getElementById('myChart');
     new Chart(chrt, {
         type: 'line',
         data: {
-            labels: years,
+            labels: dates,
             datasets: [{
                 //horizontal title on top
-                label: "Global Average Temperature",
-                data: temperatures,
+                label: "COVID CASES",
+                data: caseNums,
                 borderWidth: 1,
                 //colors
                 borderColor: 'pink',
@@ -38,14 +38,14 @@ async function createLineGraph(years, temperatures) {
                     beginAtZero: false,
                     title: {
                         display: true,
-                        text: 'Temperature' // Label for the y-axis 
+                        text: 'Case Amount' // Label for the y-axis 
                     }
                 },
                 x: {
                     beginAtZero: false,
                     title: {
                         display: true,
-                        text: 'Years' // Label for the x-axis
+                        text: 'Dates' // Label for the x-axis
                     }
                 }
             },
