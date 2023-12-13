@@ -27,6 +27,7 @@ async function createLineGraph(dates, caseNums) {
                 label: "COVID CASES",
                 data: caseNums,
                 borderWidth: 1,
+                pointRadius: 1.5,
                 //colors
                 borderColor: 'pink',
                 pointBackgroundColor: 'purple'
