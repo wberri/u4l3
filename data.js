@@ -48,7 +48,7 @@ async function createLineGraph(dates, caseNums) {
                         display: true,
                         text: 'Dates' // Label for the x-axis
                     }
-                }
+                }//rand
             },
         }
     });
